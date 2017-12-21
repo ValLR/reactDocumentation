@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
+
 
 function Welcome(props){//<---the simplest way to define a component: a javascript function
 	return <h1>Hello, {props.name}</h1>
@@ -176,14 +179,12 @@ function withdraw(account,amount){
 ////////////////////////////////////////////////////////////////////////////////////
 /*STATE AND LIFECYCLE*/
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
 
 
-function tac(){
+/*function tac(){
 	const element = (
 		<div>
-			<h1>time</h1>
+			<h1>Hi, there</h1>
 			<h2>It is {new Date().toLocaleTimeString()}.</h2>
 		</div>
 	);
@@ -191,17 +192,47 @@ function tac(){
 		element,
 		document.getElementById("first")
 	);
+}*/
+
+
+//Now we'll make the Clock component truly reusable and encapsulated.
+//It will set up its own timer and update itself every second
+
+/*function Clock(props){
+	return(
+		<div>
+			<h1>Hi, there</h1>
+			<h2>It is {props.date.toLocaleTimeString()}.
+			</h2>
+		</div>
+	);
+}*/
+function tac(){
+// --> but Clock updates de User Interface, ideally we want to wirte this once
+// and have the Clock update itself:
+	ReactDOM.render(
+		<Clock date={new Date()}/>,/*THIS WE WANT TO CHANGE*/
+		/* what we want to write: <Clock/>,*/
+		document.getElementById("first")
+	);
 }
 
-setInterval(tac,1000)
+setInterval(tac,1000);
 
+/*NOW WE LEARN HOW TO TURN functions TO A class*/
 
-
-
-
-
-
-
+class Clock extends React.Component{
+	render(){
+		return(
+			<div>
+				<h1>Hi, there</h1>
+				<h2>It is {this.props.date.toLocaleTimeString()}.
+				</h2>
+			</div>
+		);
+	}
+}
+//when we use this classes, we can use ADDITIONAL FEATURES, such as LOCAL STATE and LIFECYCLE HOOKS
 
 
 
