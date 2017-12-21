@@ -4,25 +4,6 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
-
-
-/*function tac(){
-	const element = (
-		<div>
-			<h1>time</h1>
-			<h2>It is {new Date().toLocaleTimeString()}.</h2>
-		</div>
-	);
-	ReactDOM.render(
-		element,
-		document.getElementById("root")
-	);
-}
-
-setInterval(tac,1000)*/
-
 function Welcome(props){//<---the simplest way to define a component: a javascript function
 	return <h1>Hello, {props.name}</h1>
 }
@@ -181,6 +162,48 @@ ReactDOM.render(
 	/>,
 	document.getElementById("another")
 );
+
+//Props are READ-ONLY, the function/class must never modify its own props
+function  sum(a,b){
+	return a+b; //"PURE" it doesn't attempt to change their inputs.
+				//ALWAYS returns the SAME RESULT for the SAME INPUTS
+}
+
+function withdraw(account,amount){
+	account.total -= amount; //"IMPURE" it changes its own input.
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+/*STATE AND LIFECYCLE*/
+
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
+
+
+function tac(){
+	const element = (
+		<div>
+			<h1>time</h1>
+			<h2>It is {new Date().toLocaleTimeString()}.</h2>
+		</div>
+	);
+	ReactDOM.render(
+		element,
+		document.getElementById("first")
+	);
+}
+
+setInterval(tac,1000)
+
+
+
+
+
+
+
+
+
+
 
 
 
