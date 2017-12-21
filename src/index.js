@@ -206,18 +206,19 @@ function withdraw(account,amount){
 			</h2>
 		</div>
 	);
-}*/
+}
 function tac(){
 // --> but Clock updates de User Interface, ideally we want to wirte this once
 // and have the Clock update itself:
 	ReactDOM.render(
 		<Clock/>,/*THIS WE WANT TO CHANGE*/
-		/* what we want to write: <Clock/>,*/
+		/* what we want to write: <Clock/>,
 		document.getElementById("first")
 	);
 }
 
 setInterval(tac,1000);
+*/
 
 /*NOW WE LEARN HOW TO TURN functions TO A class*/
 
@@ -240,8 +241,28 @@ class Clock extends React.Component{
 	constructor(props){
 		super(props);
 		this.state={date: new Date()};
-
+//btw, we're saving the timer ID right on this
 	}
+/*METHODS!*/
+	componentDidMount(){
+//this runs after the component output has been rendered to the DOM. Good place for a timer
+		this.timerID = setInterval(
+			() => this.tick(),
+			1000
+		);		
+	}
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+
 
 //1.we change this.props.date --> this.state.date 
 	render(){
@@ -254,13 +275,22 @@ class Clock extends React.Component{
 	}
 }
 
+ReactDOM.render(
+	<Clock/>,
+	document.getElementById("first")
+);
+
 /*And now we make the clock update itself every second by...
 	adding LIFECYCLE methods to a Class
 We want to:
 1) SET UP A TIMER whenever our component Clock is rendered to de Dom
 for the first time ("MOUNTING")
 2) CLEAR SAID TIMER whenever the DOM produced by Clock is removed ("REMOVED")
+
+SO, we're gonna need special METHODS on the component class to run some code when a component
+mounts and unmounts
 */
+
 
 
 
