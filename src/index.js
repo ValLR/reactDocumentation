@@ -211,7 +211,7 @@ function tac(){
 // --> but Clock updates de User Interface, ideally we want to wirte this once
 // and have the Clock update itself:
 	ReactDOM.render(
-		<Clock date={new Date()}/>,/*THIS WE WANT TO CHANGE*/
+		<Clock/>,/*THIS WE WANT TO CHANGE*/
 		/* what we want to write: <Clock/>,*/
 		document.getElementById("first")
 	);
@@ -221,7 +221,7 @@ setInterval(tac,1000);
 
 /*NOW WE LEARN HOW TO TURN functions TO A class*/
 
-class Clock extends React.Component{
+/*class Clock extends React.Component{
 	render(){
 		return(
 			<div>
@@ -231,8 +231,38 @@ class Clock extends React.Component{
 			</div>
 		);
 	}
-}
+}*/
 //when we use this classes, we can use ADDITIONAL FEATURES, such as LOCAL STATE and LIFECYCLE HOOKS
+
+/*NOW WE'RE GONNA ADD LOCAL STATE TO A CLASS*/
+class Clock extends React.Component{
+//we add a CLASS CONSTRUCTOR, passing props as the base constructor
+	constructor(props){
+		super(props);
+		this.state={date: new Date()};
+
+	}
+
+//1.we change this.props.date --> this.state.date 
+	render(){
+		return(
+			<div>
+				<h1>Hi, there</h1>
+				<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+			</div>
+		);
+	}
+}
+
+/*And now we make the clock update itself every second by...
+	adding LIFECYCLE methods to a Class
+We want to:
+1) SET UP A TIMER whenever our component Clock is rendered to de Dom
+for the first time ("MOUNTING")
+2) CLEAR SAID TIMER whenever the DOM produced by Clock is removed ("REMOVED")
+*/
+
+
 
 
 
