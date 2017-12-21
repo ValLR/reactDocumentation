@@ -236,15 +236,15 @@ setInterval(tac,1000);
 //when we use this classes, we can use ADDITIONAL FEATURES, such as LOCAL STATE and LIFECYCLE HOOKS
 
 /*NOW WE'RE GONNA ADD LOCAL STATE TO A CLASS*/
-class Clock extends React.Component{
+class Clock extends React.Component {
 //we add a CLASS CONSTRUCTOR, passing props as the base constructor
-	constructor(props){
+	constructor(props) {
 		super(props);
-		this.state={date: new Date()};
+		this.state = { date: new Date() };
 //btw, we're saving the timer ID right on this
 	}
 /*METHODS!*/
-	componentDidMount(){
+	componentDidMount() {
 //this runs after the component output has been rendered to the DOM. Good place for a timer
 		this.timerID = setInterval(
 			() => this.tick(),
