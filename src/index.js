@@ -161,8 +161,26 @@ function Comment(props){
 }
 ///////////////////////////////////////////////////////////////////
 
-//
-
+//now, for let's create a comment const
+const comment ={
+	date: new Date(), //here you generate a date
+	text:
+		"I'm starting to like react. I think.",
+	author:{
+		name: "Val LR",
+		avatarUrl:
+			"http://placekitten.com/g/64/64",
+	},
+};
+///AND NOW WE RENDER!
+ReactDOM.render(
+	<Comment
+		date={comment.date}
+		text={comment.text}
+		author={comment.author}
+	/>,
+	document.getElementById("another")
+);
 
 
 
